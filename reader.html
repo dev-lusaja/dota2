@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lector de Cómics - Dota 2</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/reader.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+</head>
+<body>
+
+  <div class="topbar" id="topbar">
+    <div class="topbar-left">
+      <a href="index.html" class="btn-icon" title="Volver a la galería">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1 class="comic-title" id="comic-title">Cargando...</h1>
+    </div>
+    <div class="topbar-right">
+      <div class="page-indicator">
+        <span id="current-page">0</span> / <span id="total-pages">0</span>
+      </div>
+      <a href="#" id="official-url" target="_blank" class="btn-icon" title="Ver en el sitio oficial">
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="bottombar" id="bottombar">
+    <input type="range" id="page-slider" min="1" max="100" value="1" class="page-slider">
+  </div>
+
+  <div class="reader-container" id="reader">
+    <img id="comic-img" class="comic-page" src="" alt="Página del cómic">
+    
+    <div id="spinner" class="spinner"></div>
+    <div id="error-msg" class="error-msg">Error al cargar la página</div>
+
+    <!-- Navegación Invisible -->
+    <div class="nav-overlay nav-left" id="nav-prev" title="Página anterior">
+      <i class="fas fa-chevron-left nav-arrow"></i>
+    </div>
+    <div class="nav-overlay nav-right" id="nav-next" title="Página siguiente">
+      <i class="fas fa-chevron-right nav-arrow"></i>
+    </div>
+  </div>
+
+  <!-- Contenedor invisible para precargar la siguiente imagen -->
+  <div style="display:none;" id="preload-container"></div>
+
+  <script src="js/comics-loader.js"></script>
+  <script src="js/reader.js"></script>
+</body>
+</html>

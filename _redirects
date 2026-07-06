@@ -1,0 +1,2 @@
+/* Redirect any unknown routes back to index */
+/*  /index.html  200
