@@ -198,28 +198,27 @@ header p {
 
 .comic-desc-container {
   flex-grow: 1;
-  overflow-y: auto;
-  padding-right: 5px;
+  overflow: hidden;
   margin-bottom: 1.5rem;
+  position: relative; /* Para el fade gradient */
 }
 
-.comic-desc-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.comic-desc-container::-webkit-scrollbar-thumb {
-  background-color: var(--accent-gold);
-  border-radius: 3px;
+/* Fade gradient al fondo — indica que hay más texto */
+.comic-desc-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5rem;
+  background: linear-gradient(transparent, var(--panel-bg));
+  pointer-events: none;
 }
 
 .comic-desc {
   font-size: 0.95rem;
   color: var(--text-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 10;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.7;
 }
 
 .comic-actions {
