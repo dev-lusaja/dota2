@@ -111,18 +111,38 @@ body {
   user-select: none;
 }
 
-/* Landscape Mode for Mobile (When rotated) */
-@media (max-width: 900px) and (orientation: landscape) {
-  .reader-container {
-    align-items: flex-start; /* So image starts at top when scrolling */
-    padding: 0; /* Remove padding to maximize size */
+/* Landscape Mode for Mobile (When rotated) — full screen image */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Ocultar barras automáticamente para maximizar espacio */
+  .topbar {
+    transform: translateY(-100%);
   }
-  
+
+  .bottombar {
+    transform: translateY(100%);
+  }
+
+  /* El contenedor se ancla al viewport completo, ignorando el layout flex del body */
+  .reader-container {
+    position: fixed;
+    inset: 0;           /* top: 0; right: 0; bottom: 0; left: 0 */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  /* La imagen llena todo el contenedor sin distorsión */
   .comic-page {
     width: 100%;
-    max-height: none; /* Remove height constraint */
-    object-fit: fill; /* Use full width */
-    height: auto;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 }
 
@@ -264,4 +284,61 @@ body {
   .nav-overlay {
     width: 20%;
   }
+}
+
+/* Rotation Hint Toast */
+.rotation-hint {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(10, 14, 26, 0.92);
+  border: 1px solid rgba(200, 169, 110, 0.4);
+  color: var(--accent-gold);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 200;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  white-space: nowrap;
+}
+
+.rotation-hint i {
+  animation: spin-slow 2s linear infinite;
+}
+
+.rotation-hint.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  /* Se oculta automáticamente tras 4s */
+  animation: hint-fadein-out 4s ease forwards;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes hint-fadein-out {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  15%  { opacity: 1; transform: translateX(-50%) translateY(0);    }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Page format classes — ajustan comportamiento en portrait */
+body.format-landscape .comic-page {
+  /* En portrait, una página landscape se ve pequeña — se prioriza el ancho */
+  object-fit: contain;
+}
+
+body.format-portrait .comic-page {
+  /* En landscape, una página portrait se ve pequeña — se prioriza la altura */
+  object-fit: contain;
 }

@@ -30,9 +30,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   const topbar = document.getElementById('topbar');
   const bottombar = document.getElementById('bottombar');
   const slider = document.getElementById('page-slider');
+  const rotationHint = document.getElementById('rotation-hint');
   
   const navPrev = document.getElementById('nav-prev');
   const navNext = document.getElementById('nav-next');
+
+  // Page format: apply class and manage rotation hint
+  const pageFormat = comic.images.page_format || 'landscape';
+  document.body.classList.add(`format-${pageFormat}`);
+
+  function updateRotationHint() {
+    if (!rotationHint) return;
+    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+    const needsRotation =
+      (pageFormat === 'landscape' && !isLandscape) ||
+      (pageFormat === 'portrait' && isLandscape);
+    rotationHint.classList.toggle('visible', needsRotation);
+  }
+
+  updateRotationHint();
+  window.addEventListener('orientationchange', updateRotationHint);
+  window.addEventListener('resize', updateRotationHint);
 
   // Comic State
   let currentPage = comic.images.page_min;
