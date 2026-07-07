@@ -39,13 +39,26 @@ document.addEventListener('DOMContentLoaded', async () => {
   const pageFormat = comic.images.page_format || 'landscape';
   document.body.classList.add(`format-${pageFormat}`);
 
+  let hintTimeout;
   function updateRotationHint() {
     if (!rotationHint) return;
     const isLandscape = window.matchMedia('(orientation: landscape)').matches;
     const needsRotation =
       (pageFormat === 'landscape' && !isLandscape) ||
       (pageFormat === 'portrait' && isLandscape);
-    rotationHint.classList.toggle('visible', needsRotation);
+    
+    clearTimeout(hintTimeout);
+    
+    if (needsRotation) {
+      if (!rotationHint.classList.contains('visible')) {
+        rotationHint.classList.add('visible');
+      }
+      hintTimeout = setTimeout(() => {
+        rotationHint.classList.remove('visible');
+      }, 4000);
+    } else {
+      rotationHint.classList.remove('visible');
+    }
   }
 
   updateRotationHint();

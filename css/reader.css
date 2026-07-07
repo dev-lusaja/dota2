@@ -325,20 +325,11 @@ body {
 .rotation-hint.visible {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-  /* Se oculta automáticamente tras 4s */
-  animation: hint-fadein-out 4s ease forwards;
 }
 
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
-}
-
-@keyframes hint-fadein-out {
-  0%   { opacity: 0; transform: translateX(-50%) translateY(20px); }
-  15%  { opacity: 1; transform: translateX(-50%) translateY(0);    }
-  75%  { opacity: 1; transform: translateX(-50%) translateY(0);    }
-  100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
 }
 
 /* Page format classes — ajustan comportamiento en portrait */
