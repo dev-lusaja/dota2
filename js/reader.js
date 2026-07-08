@@ -300,6 +300,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const padding = comic.images.page_padding || 3;
   const template = comic.images.url_template;
 
+  let preventSaveProgress = false;
+  if (typeof ReadProgress !== 'undefined') {
+    const progress = ReadProgress.getProgress(comicId);
+    if (progress && progress.page > minPage) {
+      preventSaveProgress = true;
+    }
+  }
+
   // Initialize UI
   titleEl.textContent = comic.title;
   totalEl.textContent = (maxPage - minPage + 1);
@@ -331,6 +339,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     imgEl.src = url;
 
+    // Save Progress
+    if (typeof ReadProgress !== 'undefined') {
+      if (!preventSaveProgress || currentPage !== minPage) {
+        preventSaveProgress = false;
+        ReadProgress.saveProgress(comicId, currentPage, maxPage);
+      }
+    }
+
     // Preload next page
     if (currentPage < maxPage) {
       const nextUrl = ComicsLoader.getComicUrl(template, currentPage + 1, padding);
@@ -340,6 +356,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Update nav visibility
     navPrev.style.display = currentPage > minPage ? 'flex' : 'none';
     navNext.style.display = currentPage < maxPage ? 'flex' : 'none';
+  }
+
+  // Handle Resume Progress
+  function checkResumeProgress() {
+    if (typeof ReadProgress === 'undefined') return;
+    
+    const progress = ReadProgress.getProgress(comicId);
+    // If progress exists and it's not the first page
+    if (progress && progress.page > minPage) {
+      const toast = document.getElementById('resume-toast');
+      const pageNumEl = document.getElementById('resume-page-number');
+      const resumeBtn = document.getElementById('resume-btn');
+      const restartBtn = document.getElementById('restart-btn');
+      
+      if (!toast) return;
+
+      const resumePage = progress.page;
+      pageNumEl.textContent = (resumePage - minPage + 1);
+      toast.classList.add('visible');
+
+      let autoResumeTimeout;
+
+      const closeToast = () => {
+        toast.classList.remove('visible');
+        clearTimeout(autoResumeTimeout);
+      };
+
+      resumeBtn.addEventListener('click', () => {
+        preventSaveProgress = false;
+        loadPage(resumePage);
+        closeToast();
+      });
+
+      restartBtn.addEventListener('click', () => {
+        preventSaveProgress = false;
+        ReadProgress.saveProgress(comicId, minPage, maxPage);
+        closeToast(); // Already at page 1
+      });
+
+      // Auto-hide after 8 seconds if no interaction
+      autoResumeTimeout = setTimeout(() => {
+        closeToast();
+      }, 8000);
+    }
   }
 
   // Event Listeners
@@ -449,4 +509,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initial load
   loadPage(currentPage);
   resetBars();
+
+  // Check progress after a slight delay to allow UI to settle
+  setTimeout(checkResumeProgress, 500);
 });

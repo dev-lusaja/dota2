@@ -284,3 +284,41 @@ header p {
     font-size: 2rem;
   }
 }
+
+/* --- Read Progress Badges --- */
+.comic-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.card-front:hover .comic-badge {
+  transform: scale(1.05);
+}
+
+.badge-read {
+  background-color: rgba(10, 14, 26, 0.85);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+}
+
+.badge-read i {
+  margin-right: 4px;
+}
+
+.badge-progress {
+  background-color: rgba(226, 214, 193, 0.9);
+  color: #0a0e1a;
+  border: 1px solid #fff;
+}

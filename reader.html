@@ -88,7 +88,17 @@
   <!-- Contenedor invisible para precargar la siguiente imagen -->
   <div style="display:none;" id="preload-container"></div>
 
-  <script src="js/comics-loader.js?v=4"></script>
-  <script src="js/reader.js?v=4"></script>
+  <!-- Toast/Modal de reanudación -->
+  <div id="resume-toast" class="resume-toast">
+    <p>Habías llegado a la página <span id="resume-page-number">X</span>.</p>
+    <div class="resume-actions">
+      <button id="resume-btn" class="btn btn-primary">Continuar leyendo</button>
+      <button id="restart-btn" class="btn btn-secondary">Empezar de nuevo</button>
+    </div>
+  </div>
+
+  <script src="js/comics-loader.js?v=5"></script>
+  <script src="js/progress.js?v=5"></script>
+  <script src="js/reader.js?v=5"></script>
 </body>
 </html>

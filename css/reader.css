@@ -438,3 +438,91 @@ body.format-portrait .comic-page {
   /* En landscape, una página portrait se ve pequeña — se prioriza la altura */
   object-fit: contain;
 }
+
+/* --- Resume Toast / Modal --- */
+.resume-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: rgba(20, 26, 41, 0.95);
+  border: 1px solid var(--accent-gold);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  color: var(--text-main);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 90%;
+  max-width: 400px;
+}
+
+.resume-toast.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.resume-toast p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.resume-toast span {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.resume-actions {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  .resume-actions {
+    flex-direction: row;
+  }
+}
+
+/* --- Buttons --- */
+.btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease;
+  flex: 1;
+  cursor: pointer;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8b0000 0%, #5a0000 100%);
+  color: #fff;
+  border: 1px solid #a00;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #a00000 0%, #6a0000 100%);
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+}
+
+.btn-secondary:hover {
+  background: rgba(200, 169, 110, 0.1);
+}

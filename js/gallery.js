@@ -45,12 +45,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         dateDisplay = comic.release_date;
       }
     }
+
+    // Read Progress
+    const progress = typeof ReadProgress !== 'undefined' ? ReadProgress.getProgress(comic.id) : null;
+    let badgeHtml = '';
+    if (progress) {
+      if (progress.completed) {
+        badgeHtml = `<div class="comic-badge badge-read"><i class="fas fa-check"></i> LEÍDO</div>`;
+      } else if (progress.page > comic.images.page_min) {
+        // Only show "In Progress" if they actually advanced past the first page
+        badgeHtml = `<div class="comic-badge badge-progress">EN PROGRESO &bull; Pág. ${progress.page - comic.images.page_min + 1}</div>`;
+      }
+    }
     
     card.innerHTML = `
       <div class="card-inner">
         <!-- FRENTE -->
         <div class="card-front">
           <div class="comic-cover-container">
+            ${badgeHtml}
             <div class="comic-cover-blur" style="background-image: url('${coverUrl}')"></div>
             <img class="comic-cover-img" src="${coverUrl}" alt="Portada de ${comic.title}" loading="lazy">
           </div>
