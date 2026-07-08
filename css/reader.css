@@ -103,8 +103,9 @@ body {
   padding: 1rem;
   padding-left: calc(1rem + env(safe-area-inset-left));
   padding-right: calc(1rem + env(safe-area-inset-right));
-  overflow: auto;
-  touch-action: pan-x pan-y pinch-zoom;
+  overflow: hidden;
+  /* Disable native browser zoom — we handle it ourselves on the image */
+  touch-action: none;
 }
 
 .comic-page {
@@ -112,8 +113,53 @@ body {
   max-height: 100%;
   object-fit: contain;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  /* opacity transition kept separate from transform so zoom doesn't fight page-load fade */
   transition: opacity 0.3s ease;
   user-select: none;
+  /* transform origin is updated dynamically via JS */
+  transform-origin: center center;
+  will-change: transform;
+  cursor: zoom-in;
+}
+
+/* While zoomed in show grab cursors */
+.comic-page.zoomed {
+  cursor: grab;
+}
+
+.comic-page.zoomed.panning {
+  cursor: grabbing;
+}
+
+/* Reset-zoom button — appears when zoomed */
+.zoom-reset-btn {
+  position: fixed;
+  bottom: calc(80px + env(safe-area-inset-bottom));
+  right: 1.2rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(10, 14, 26, 0.85);
+  border: 1px solid rgba(200, 169, 110, 0.5);
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 150;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.zoom-reset-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
 }
 
 /* Landscape Mode for Mobile (When rotated) — full screen image */
