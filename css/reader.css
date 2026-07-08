@@ -324,6 +324,10 @@ body {
   justify-content: center;
 }
 
+.rotation-hint-icon i {
+  display: block;
+}
+
 .rotation-hint.to-landscape .rotation-hint-icon i {
   animation: rotate-to-landscape 2s ease-in-out infinite;
 }
