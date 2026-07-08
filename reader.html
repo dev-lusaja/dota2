@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Lector de Cómics - Dota 2</title>
-  
+  <meta name="description" content="Lee los cómics oficiales del universo de Dota 2 en formato landscape o portrait.">
+
+  <!-- Canonical (reader pages are dynamic, point to root) -->
+  <link rel="canonical" href="https://dota2.devlusaja.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://dota2.devlusaja.com/">
+  <meta property="og:title"       content="Dota 2 Comics">
+  <meta property="og:description" content="Lee los cómics oficiales del universo de Dota 2 en formato landscape o portrait.">
+  <meta property="og:image"       content="https://dota2.devlusaja.com/public/preview.png">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale"      content="es_ES">
+  <meta property="og:site_name"   content="Dota 2 Comics">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:url"         content="https://dota2.devlusaja.com/">
+  <meta name="twitter:title"       content="Dota 2 Comics">
+  <meta name="twitter:description" content="Lee los cómics oficiales del universo de Dota 2 en formato landscape o portrait.">
+  <meta name="twitter:image"       content="https://dota2.devlusaja.com/public/preview.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/reader.css?v=3">
+  <link rel="stylesheet" href="css/reader.css?v=4">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
@@ -49,7 +71,7 @@
     <div id="spinner" class="spinner"></div>
     <div id="error-msg" class="error-msg">Error al cargar la página</div>
 
-    <!-- Navegación Invisible -->
+    <!-- Navegación -->
     <div class="nav-overlay nav-left" id="nav-prev" title="Página anterior">
       <i class="fas fa-chevron-left nav-arrow"></i>
     </div>
@@ -66,7 +88,7 @@
   <!-- Contenedor invisible para precargar la siguiente imagen -->
   <div style="display:none;" id="preload-container"></div>
 
-  <script src="js/comics-loader.js?v=3"></script>
-  <script src="js/reader.js?v=3"></script>
+  <script src="js/comics-loader.js?v=4"></script>
+  <script src="js/reader.js?v=4"></script>
 </body>
 </html>
