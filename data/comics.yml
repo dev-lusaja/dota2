@@ -224,11 +224,11 @@ comics:
     title: "Preludio"
     description: "The House of The Cunning resolvió la línea temporal una vez más; Jolixia decidió que era necesario un cambio."
     official_url: ""
-    tags: ["Ingles", "Juego de cartas"]
+    tags: ["Español", "Juego de cartas"]
     release_date: "2018-11-27"
-    cover_url: "http://web.archive.org/web/20190526153225im_/https://steamcdn-a.akamaihd.net/apps/artifact/images/comics/comic_prelude/en/000.jpg?v=4961724"
+    cover_url: "https://cdn.steamstatic.com/apps/artifact/images/comics/comic_prelude/es/000.jpg?v=4961724"
     images:
-      url_template: "http://web.archive.org/web/20190526153225im_/https://steamcdn-a.akamaihd.net/apps/artifact/images/comics/comic_prelude/en/{page}.jpg?v=4961724"
+      url_template: "https://cdn.steamstatic.com/apps/artifact/images/comics/comic_prelude/es/{page}.jpg?v=4961724"
       page_min: 0
       page_max: 66
       page_padding: 3
