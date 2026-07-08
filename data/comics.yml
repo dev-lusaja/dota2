@@ -4,7 +4,7 @@ comics:
     description: "El primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray. El Shopkeeper obliga a Sithil y Quirt a recuperar la Demon Edge."
     official_url: "http://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_1/page_{page}_sp.jpg"
@@ -17,7 +17,7 @@ comics:
     description: "La segunda parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_2_c78BwxtVdJ7j/page_{page}_sp.jpg"
@@ -30,7 +30,7 @@ comics:
     description: "La tercera parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_3_9PcoyRxsD986/page_{page}_sp.jpg"
@@ -43,7 +43,7 @@ comics:
     description: "La cuarta parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_4_dx46MqaqXmJc/page_{page}_sp.jpg"
@@ -56,7 +56,7 @@ comics:
     description: "La quinta parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_5_IO3tArsc8cmp/page_{page}_sp.jpg"
@@ -69,7 +69,7 @@ comics:
     description: "La sexta parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_6_eqnNzyVg2Pqy/page_{page}_sp.jpg"
@@ -82,7 +82,7 @@ comics:
     description: "La séptima parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_7_99DUWfzHHbiL/page_{page}_sp.jpg"

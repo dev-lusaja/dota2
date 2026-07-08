@@ -37,9 +37,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     let dateDisplay = '';
     if (comic.release_date) {
       const dateObj = new Date(comic.release_date);
-      // Ensure we don't get off-by-one errors from timezones
-      dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
-      dateDisplay = dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      if (!isNaN(dateObj.getTime())) {
+        // Ensure we don't get off-by-one errors from timezones
+        dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
+        dateDisplay = dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      } else {
+        dateDisplay = comic.release_date;
+      }
     }
     
     card.innerHTML = `
