@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Page format: apply class and manage rotation hint
   const pageFormat = comic.images.page_format || 'landscape';
   document.body.classList.add(`format-${pageFormat}`);
+  if (rotationHint) {
+    rotationHint.classList.add(`to-${pageFormat}`);
+  }
 
   let hintTimeout;
   function updateRotationHint() {

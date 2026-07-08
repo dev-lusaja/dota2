@@ -324,8 +324,12 @@ body {
   justify-content: center;
 }
 
-.rotation-hint-icon i {
-  animation: spin-slow 3s linear infinite;
+.rotation-hint.to-landscape .rotation-hint-icon i {
+  animation: rotate-to-landscape 2s ease-in-out infinite;
+}
+
+.rotation-hint.to-portrait .rotation-hint-icon i {
+  animation: rotate-to-portrait 2s ease-in-out infinite;
 }
 
 .rotation-hint.visible {
@@ -333,9 +337,18 @@ body {
   transform: translate(-50%, -50%) scale(1);
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes rotate-to-landscape {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(0deg); }
+  70% { transform: rotate(-90deg); }
+  100% { transform: rotate(-90deg); }
+}
+
+@keyframes rotate-to-portrait {
+  0% { transform: rotate(-90deg); }
+  30% { transform: rotate(-90deg); }
+  70% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
 }
 
 /* Page format classes — ajustan comportamiento en portrait */
