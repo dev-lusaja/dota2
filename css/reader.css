@@ -201,42 +201,72 @@ body {
   opacity: 0.5;
 }
 
-/* Navigation Controls (Overlay) */
+/* Navigation Controls — compact floating buttons on the sides */
 .nav-overlay {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 30%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 80px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
+  opacity: 0.35;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+  border-radius: 6px;
+  z-index: 20;
+  pointer-events: auto;
 }
 
 .nav-overlay:hover {
   opacity: 1;
 }
 
+/* Hide nav buttons while image is zoomed — avoid conflicts with pan */
+.nav-overlay.zoom-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .nav-left {
-  left: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.5), transparent);
+  left: 8px;
+  background: linear-gradient(to right, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+  border-radius: 4px 8px 8px 4px;
 }
 
 .nav-right {
-  right: 0;
-  background: linear-gradient(to left, rgba(0,0,0,0.5), transparent);
+  right: 8px;
+  background: linear-gradient(to left, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+  border-radius: 8px 4px 4px 8px;
 }
 
 .nav-arrow {
-  font-size: 4rem;
-  color: rgba(255, 255, 255, 0.5);
-  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 8px rgba(0,0,0,0.9);
+  transition: color 0.2s, transform 0.2s;
 }
 
 .nav-overlay:hover .nav-arrow {
-  color: rgba(200, 169, 110, 0.8);
+  color: rgba(200, 169, 110, 0.95);
+}
+
+.nav-left:hover .nav-arrow  { transform: translateX(-3px); }
+.nav-right:hover .nav-arrow { transform: translateX(3px); }
+
+/* Mobile: slightly smaller */
+@media (max-width: 768px) {
+  .nav-overlay {
+    width: 38px;
+    height: 64px;
+    opacity: 0.45; /* always slightly visible on touch */
+  }
+  .nav-arrow {
+    font-size: 1.4rem;
+  }
+  .nav-left  { left: 4px; }
+  .nav-right { right: 4px; }
 }
 
 /* Loading Spinner */
@@ -334,9 +364,6 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  .nav-overlay {
-    width: 20%;
   }
 }
 

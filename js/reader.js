@@ -68,12 +68,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     applyTransform();
     imgEl.classList.remove('zoomed', 'panning');
     zoomResetBtn && zoomResetBtn.classList.remove('visible');
+    // Restore nav buttons
+    navPrev && navPrev.classList.remove('zoom-hidden');
+    navNext && navNext.classList.remove('zoom-hidden');
   }
 
   function onZoomChanged() {
     if (currentScale > 1.01) {
       imgEl.classList.add('zoomed');
       zoomResetBtn && zoomResetBtn.classList.add('visible');
+      // Hide nav buttons — they conflict with pan gestures
+      navPrev && navPrev.classList.add('zoom-hidden');
+      navNext && navNext.classList.add('zoom-hidden');
     } else {
       resetZoom();
     }
