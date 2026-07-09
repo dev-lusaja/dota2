@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/main.css?v=5">
+  <link rel="stylesheet" href="css/main.css">
 
   <!-- JS YAML Parser -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
@@ -62,7 +62,30 @@
         <i class="fas fa-spinner fa-spin"></i> Cargando librería...
       </div>
 
-    <div id="gallery" class="comics-grid" style="display: none;">
+      <!-- Barra de Filtros -->
+      <div class="comics-filters" id="comics-filters" style="display: none;">
+        <div class="filter-group filter-search">
+          <i class="fas fa-search filter-icon"></i>
+          <input type="text" id="filter-text" placeholder="Buscar por título o descripción..." aria-label="Buscar cómics">
+        </div>
+        <div class="filter-group">
+          <i class="fas fa-language filter-icon"></i>
+          <select id="filter-lang" aria-label="Filtrar por idioma">
+            <option value="all">Todos los idiomas</option>
+            <option value="Español">Español</option>
+            <option value="Ingles">Inglés</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <i class="fas fa-sort-amount-down filter-icon"></i>
+          <select id="filter-sort" aria-label="Ordenar por fecha">
+            <option value="desc" selected>Más recientes primero</option>
+            <option value="asc">Más antiguos primero</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="gallery" class="comics-grid" style="display: none;">
       <!-- Las tarjetas de los cómics se insertarán aquí dinámicamente -->
     </div>
     </div> <!-- /comics-section -->
@@ -100,9 +123,9 @@
     </div>
   </dialog>
 
-  <script src="js/comics-loader.js?v=5"></script>
-  <script src="js/progress.js?v=5"></script>
-  <script src="js/gallery.js?v=5"></script>
-  <script src="js/tarot.js?v=1"></script>
+  <script src="js/comics-loader.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/tarot.js"></script>
 </body>
 </html>
