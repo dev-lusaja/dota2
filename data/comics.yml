@@ -453,3 +453,15 @@ comics:
       page_min: 0
       page_max: 46
       page_padding: 3
+  - id: muerta
+    title: "Muerta"
+    description: "Con sus temibles y engañosos disparos, espíritus invocados y un arma de repuesto, la destreza de Muerta para llevarse vidas por delante era tan impresionante que la propia Muerte la contrató. Vengativa, impasible y fiel a sus dos pistolas, Muerta se lleva almas al más allá, tanto si quieren ir como si no. Y, cuando necesita ser más convincente, no tiene más que revelar su verdadera identidad de pesadilla espectral asesina para ayudarlas a morir un poco más rápido."
+    official_url: "https://www.dota2.com/deadreckoning"
+    tags: ["Español", "estimación a estima"]
+    release_date: "2023-04-06"
+    cover_url: "https://cdn.steamstatic.com/apps/dota2/images/dota_react//muerta/wallpaper3.png"
+    images:
+      url_template: "/public/comics/deadreckoning/es/muerta_{page}.png"
+      page_min: 1
+      page_max: 4
+      page_padding: 2
