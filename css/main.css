@@ -48,6 +48,25 @@ header h1 {
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 0 0 20px rgba(200, 169, 110, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dota-logo {
+  display: inline-block;
+  height: 1.2em;
+  width: 1.2em;
+  background-color: var(--accent-gold);
+  -webkit-mask-image: url('../public/dota2_logo_symbol.png');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: url('../public/dota2_logo_symbol.png');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
 }
 
 header p {
@@ -321,4 +340,311 @@ header p {
   background-color: rgba(226, 214, 193, 0.9);
   color: #0a0e1a;
   border: 1px solid #fff;
+}
+
+/* --- Navigation Tabs --- */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(200, 169, 110, 0.2);
+  padding-bottom: 1rem;
+}
+
+.nav-tab {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.nav-tab:hover {
+  color: var(--text-main);
+  background: rgba(200, 169, 110, 0.05);
+}
+
+.nav-tab.active {
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  background: rgba(200, 169, 110, 0.1);
+  box-shadow: 0 0 10px rgba(200, 169, 110, 0.2);
+}
+
+.content-section {
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.content-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Tarot Section --- */
+.tarot-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: var(--panel-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toggle-label, .toggle-status {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--accent-red);
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-gold);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--accent-gold);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.slider.round {
+  border-radius: 26px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Tarot Grid */
+.tarot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.tarot-card {
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  aspect-ratio: 54 / 85; /* Proporción típica de cartas de tarot */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #000;
+}
+
+.tarot-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.tarot-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+  border-color: var(--accent-gold);
+}
+
+.tarot-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Modal (Dialog) */
+.zoom-modal {
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  max-width: 90vw;
+  max-height: 90vh;
+  color: var(--text-main);
+  overflow: visible; /* to allow close button overflow if needed */
+}
+
+.zoom-modal::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+}
+
+/* Animación de apertura para el dialog nativo */
+.zoom-modal[open] {
+  animation: modalPop 0.3s ease-out;
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  max-height: 90vh;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  transform: scale(1.1);
+}
+
+.modal-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  padding: 2rem;
+  flex: 1;
+  background-image: radial-gradient(circle at 50% 50%, rgba(200, 169, 110, 0.05) 0%, transparent 70%);
+}
+
+.modal-image-container img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  transition: opacity 0.3s ease;
+}
+
+.modal-controls {
+  padding: 1rem 2rem 2rem;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(transparent, rgba(10, 14, 26, 0.8));
+}
+
+.modal-controls .btn {
+  min-width: 200px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .tarot-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .tarot-controls {
+    margin-bottom: 1.5rem;
+    padding: 0.8rem;
+  }
+  
+  .zoom-modal {
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+  
+  .modal-content {
+    max-height: 100vh;
+    justify-content: space-between;
+  }
+  
+  .modal-image-container {
+    padding: 0;
+    margin-top: 3rem;
+  }
+  
+  .modal-image-container img {
+    max-height: calc(100vh - 140px);
+    border-radius: 0;
+  }
+  
+  .modal-close-btn {
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.8);
+  }
+  
+  .modal-controls {
+    padding: 1rem;
+    background: rgba(10, 14, 26, 0.95);
+  }
+}
+
+@media (max-width: 480px) {
+  .tarot-grid {
+    grid-template-columns: 1fr;
+  }
 }

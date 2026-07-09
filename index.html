@@ -45,21 +45,64 @@
 
   <div class="container">
     <header>
-      <h1>Dota 2 Comics</h1>
-      <p>Explora y lee los cómics oficiales del universo de Dota 2</p>
+      <h1>
+        <span class="dota-logo" aria-label="Dota 2 Logo"></span>
+        Dota 2
+      </h1>
+      <p>Explora y lee contenido relacionado con el universo de Dota 2</p>
     </header>
 
-    <div id="loading" class="loading">
-      <i class="fas fa-spinner fa-spin"></i> Cargando librería...
-    </div>
+    <nav class="main-nav">
+      <button class="nav-tab active" data-target="comics-section">Cómics</button>
+      <button class="nav-tab" data-target="tarot-section">Tarot</button>
+    </nav>
+
+    <div id="comics-section" class="content-section active">
+      <div id="loading" class="loading">
+        <i class="fas fa-spinner fa-spin"></i> Cargando librería...
+      </div>
 
     <div id="gallery" class="comics-grid" style="display: none;">
       <!-- Las tarjetas de los cómics se insertarán aquí dinámicamente -->
     </div>
-  </div>
+    </div> <!-- /comics-section -->
+
+    <div id="tarot-section" class="content-section">
+      <div class="tarot-controls">
+        <span class="toggle-label">Estilo:</span>
+        <label class="switch">
+          <input type="checkbox" id="tarot-style-toggle">
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle-status" id="tarot-status-label">Color</span>
+      </div>
+      
+      <div id="tarot-gallery" class="tarot-grid">
+        <!-- Las cartas de tarot se insertarán aquí -->
+      </div>
+    </div> <!-- /tarot-section -->
+  </div> <!-- /container -->
+
+  <!-- Modal para Zoom -->
+  <dialog id="image-modal" class="zoom-modal">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close-btn" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+      
+      <div class="modal-image-container">
+        <img id="modal-image" src="" alt="Zoom" loading="lazy">
+      </div>
+      
+      <div class="modal-controls">
+        <button id="modal-toggle-style" class="btn btn-secondary">
+          <i class="fas fa-exchange-alt"></i> <span id="modal-toggle-text">Ver alterno</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
 
   <script src="js/comics-loader.js?v=5"></script>
   <script src="js/progress.js?v=5"></script>
   <script src="js/gallery.js?v=5"></script>
+  <script src="js/tarot.js?v=1"></script>
 </body>
 </html>
