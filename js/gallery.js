@@ -37,9 +37,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     let dateDisplay = '';
     if (comic.release_date) {
       const dateObj = new Date(comic.release_date);
-      // Ensure we don't get off-by-one errors from timezones
-      dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
-      dateDisplay = dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      if (!isNaN(dateObj.getTime())) {
+        // Ensure we don't get off-by-one errors from timezones
+        dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
+        dateDisplay = dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      } else {
+        dateDisplay = comic.release_date;
+      }
+    }
+
+    // Read Progress
+    const progress = typeof ReadProgress !== 'undefined' ? ReadProgress.getProgress(comic.id) : null;
+    let badgeHtml = '';
+    if (progress) {
+      if (progress.completed) {
+        badgeHtml = `<div class="comic-badge badge-read"><i class="fas fa-check"></i> LEÍDO</div>`;
+      } else if (progress.page > comic.images.page_min) {
+        // Only show "In Progress" if they actually advanced past the first page
+        badgeHtml = `<div class="comic-badge badge-progress">EN PROGRESO &bull; Pág. ${progress.page - comic.images.page_min + 1}</div>`;
+      }
     }
     
     card.innerHTML = `
@@ -47,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <!-- FRENTE -->
         <div class="card-front">
           <div class="comic-cover-container">
+            ${badgeHtml}
             <div class="comic-cover-blur" style="background-image: url('${coverUrl}')"></div>
             <img class="comic-cover-img" src="${coverUrl}" alt="Portada de ${comic.title}" loading="lazy">
           </div>

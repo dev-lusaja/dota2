@@ -24,11 +24,13 @@ body {
 /* Top Bar */
 .topbar {
   background-color: var(--topbar-bg);
-  height: 60px;
+  height: calc(60px + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
+  padding-left: calc(1.5rem + env(safe-area-inset-left));
+  padding-right: calc(1.5rem + env(safe-area-inset-right));
   border-bottom: 1px solid rgba(200, 169, 110, 0.2);
   position: fixed;
   top: 0;
@@ -36,6 +38,7 @@ body {
   right: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: transform 0.3s ease;
 }
 
@@ -90,16 +93,19 @@ body {
 /* Reader Area */
 .reader-container {
   flex-grow: 1;
-  margin-top: 60px; /* space for topbar */
-  margin-bottom: 60px; /* space for bottombar */
+  margin-top: calc(60px + env(safe-area-inset-top));
+  margin-bottom: calc(60px + env(safe-area-inset-bottom));
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 120px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   padding: 1rem;
-  overflow: auto;
-  touch-action: pan-x pan-y pinch-zoom;
+  padding-left: calc(1rem + env(safe-area-inset-left));
+  padding-right: calc(1rem + env(safe-area-inset-right));
+  overflow: hidden;
+  /* Disable native browser zoom — we handle it ourselves on the image */
+  touch-action: none;
 }
 
 .comic-page {
@@ -107,8 +113,53 @@ body {
   max-height: 100%;
   object-fit: contain;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  /* opacity transition kept separate from transform so zoom doesn't fight page-load fade */
   transition: opacity 0.3s ease;
   user-select: none;
+  /* transform origin is updated dynamically via JS */
+  transform-origin: center center;
+  will-change: transform;
+  cursor: zoom-in;
+}
+
+/* While zoomed in show grab cursors */
+.comic-page.zoomed {
+  cursor: grab;
+}
+
+.comic-page.zoomed.panning {
+  cursor: grabbing;
+}
+
+/* Reset-zoom button — appears when zoomed */
+.zoom-reset-btn {
+  position: fixed;
+  bottom: calc(80px + env(safe-area-inset-bottom));
+  right: 1.2rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(10, 14, 26, 0.85);
+  border: 1px solid rgba(200, 169, 110, 0.5);
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 150;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.zoom-reset-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
 }
 
 /* Landscape Mode for Mobile (When rotated) — full screen image */
@@ -150,42 +201,72 @@ body {
   opacity: 0.5;
 }
 
-/* Navigation Controls (Overlay) */
+/* Navigation Controls — compact floating buttons on the sides */
 .nav-overlay {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 30%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 80px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
+  opacity: 0.35;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+  border-radius: 6px;
+  z-index: 20;
+  pointer-events: auto;
 }
 
 .nav-overlay:hover {
   opacity: 1;
 }
 
+/* Hide nav buttons while image is zoomed — avoid conflicts with pan */
+.nav-overlay.zoom-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .nav-left {
-  left: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.5), transparent);
+  left: 8px;
+  background: linear-gradient(to right, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+  border-radius: 4px 8px 8px 4px;
 }
 
 .nav-right {
-  right: 0;
-  background: linear-gradient(to left, rgba(0,0,0,0.5), transparent);
+  right: 8px;
+  background: linear-gradient(to left, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+  border-radius: 8px 4px 4px 8px;
 }
 
 .nav-arrow {
-  font-size: 4rem;
-  color: rgba(255, 255, 255, 0.5);
-  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 8px rgba(0,0,0,0.9);
+  transition: color 0.2s, transform 0.2s;
 }
 
 .nav-overlay:hover .nav-arrow {
-  color: rgba(200, 169, 110, 0.8);
+  color: rgba(200, 169, 110, 0.95);
+}
+
+.nav-left:hover .nav-arrow  { transform: translateX(-3px); }
+.nav-right:hover .nav-arrow { transform: translateX(3px); }
+
+/* Mobile: slightly smaller */
+@media (max-width: 768px) {
+  .nav-overlay {
+    width: 38px;
+    height: 64px;
+    opacity: 0.45; /* always slightly visible on touch */
+  }
+  .nav-arrow {
+    font-size: 1.4rem;
+  }
+  .nav-left  { left: 4px; }
+  .nav-right { right: 4px; }
 }
 
 /* Loading Spinner */
@@ -232,11 +313,13 @@ body {
 /* Bottom Bar */
 .bottombar {
   background-color: var(--topbar-bg);
-  height: 60px;
+  height: calc(60px + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2rem;
+  padding-left: calc(2rem + env(safe-area-inset-left));
+  padding-right: calc(2rem + env(safe-area-inset-right));
   border-top: 1px solid rgba(200, 169, 110, 0.2);
   position: fixed;
   bottom: 0;
@@ -244,6 +327,7 @@ body {
   right: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: transform 0.3s ease;
 }
 
@@ -281,55 +365,67 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .nav-overlay {
-    width: 20%;
-  }
 }
 
-/* Rotation Hint Toast */
+/* Rotation Hint Toast (now a centered circular icon) */
 .rotation-hint {
   position: fixed;
-  bottom: 80px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: rgba(10, 14, 26, 0.92);
-  border: 1px solid rgba(200, 169, 110, 0.4);
+  transform: translate(-50%, -50%) scale(0.9);
+  background: rgba(10, 14, 26, 0.65);
+  border: 1px solid rgba(200, 169, 110, 0.3);
   color: var(--accent-gold);
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-size: 0.85rem;
-  backdrop-filter: blur(10px);
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   pointer-events: none;
   z-index: 200;
   transition: opacity 0.4s ease, transform 0.4s ease;
-  white-space: nowrap;
 }
 
-.rotation-hint i {
-  animation: spin-slow 2s linear infinite;
+.rotation-hint-icon {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rotation-hint-icon i {
+  display: block;
+}
+
+.rotation-hint.to-landscape .rotation-hint-icon i {
+  animation: rotate-to-landscape 2s ease-in-out infinite;
+}
+
+.rotation-hint.to-portrait .rotation-hint-icon i {
+  animation: rotate-to-portrait 2s ease-in-out infinite;
 }
 
 .rotation-hint.visible {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  /* Se oculta automáticamente tras 4s */
-  animation: hint-fadein-out 4s ease forwards;
+  opacity: 0.65;
+  transform: translate(-50%, -50%) scale(1);
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes rotate-to-landscape {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(0deg); }
+  70% { transform: rotate(-90deg); }
+  100% { transform: rotate(-90deg); }
 }
 
-@keyframes hint-fadein-out {
-  0%   { opacity: 0; transform: translateX(-50%) translateY(20px); }
-  15%  { opacity: 1; transform: translateX(-50%) translateY(0);    }
-  75%  { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes rotate-to-portrait {
+  0% { transform: rotate(-90deg); }
+  30% { transform: rotate(-90deg); }
+  70% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
 }
 
 /* Page format classes — ajustan comportamiento en portrait */
@@ -341,4 +437,92 @@ body.format-landscape .comic-page {
 body.format-portrait .comic-page {
   /* En landscape, una página portrait se ve pequeña — se prioriza la altura */
   object-fit: contain;
+}
+
+/* --- Resume Toast / Modal --- */
+.resume-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: rgba(20, 26, 41, 0.95);
+  border: 1px solid var(--accent-gold);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  color: var(--text-main);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 90%;
+  max-width: 400px;
+}
+
+.resume-toast.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.resume-toast p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.resume-toast span {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.resume-actions {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  .resume-actions {
+    flex-direction: row;
+  }
+}
+
+/* --- Buttons --- */
+.btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease;
+  flex: 1;
+  cursor: pointer;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8b0000 0%, #5a0000 100%);
+  color: #fff;
+  border: 1px solid #a00;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #a00000 0%, #6a0000 100%);
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+}
+
+.btn-secondary:hover {
+  background: rgba(200, 169, 110, 0.1);
 }

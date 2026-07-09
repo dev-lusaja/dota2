@@ -4,7 +4,7 @@ comics:
     description: "El primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray. El Shopkeeper obliga a Sithil y Quirt a recuperar la Demon Edge."
     official_url: "http://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_1/page_{page}_sp.jpg"
@@ -17,7 +17,7 @@ comics:
     description: "La segunda parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_2_c78BwxtVdJ7j/page_{page}_sp.jpg"
@@ -30,7 +30,7 @@ comics:
     description: "La tercera parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_3_9PcoyRxsD986/page_{page}_sp.jpg"
@@ -43,7 +43,7 @@ comics:
     description: "La cuarta parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_4_dx46MqaqXmJc/page_{page}_sp.jpg"
@@ -56,7 +56,7 @@ comics:
     description: "La quinta parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_5_IO3tArsc8cmp/page_{page}_sp.jpg"
@@ -69,7 +69,7 @@ comics:
     description: "La sexta parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_6_eqnNzyVg2Pqy/page_{page}_sp.jpg"
@@ -82,7 +82,7 @@ comics:
     description: "La séptima parte del primer cómic oficial de Dota 2 escrito por Marc Laidlaw y dibujado por James \"Jim\" Murray."
     official_url: "https://www.dota2.com/comics/are_we_heroes_yet/"
     tags: ["Español"]
-    release_date: "2011-11-31"
+    release_date: "2011-11-30"
     cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/awhy/overview_center_sp.jpg"
     images:
       url_template: "https://media.steampowered.com/apps/dota2/images/comics/awhy/pages/part_7_99DUWfzHHbiL/page_{page}_sp.jpg"
@@ -224,11 +224,11 @@ comics:
     title: "Preludio"
     description: "The House of The Cunning resolvió la línea temporal una vez más; Jolixia decidió que era necesario un cambio."
     official_url: ""
-    tags: ["Ingles", "Juego de cartas"]
+    tags: ["Español", "Juego de cartas"]
     release_date: "2018-11-27"
-    cover_url: "http://web.archive.org/web/20190526153225im_/https://steamcdn-a.akamaihd.net/apps/artifact/images/comics/comic_prelude/en/000.jpg?v=4961724"
+    cover_url: "https://cdn.steamstatic.com/apps/artifact/images/comics/comic_prelude/es/000.jpg?v=4961724"
     images:
-      url_template: "http://web.archive.org/web/20190526153225im_/https://steamcdn-a.akamaihd.net/apps/artifact/images/comics/comic_prelude/en/{page}.jpg?v=4961724"
+      url_template: "https://cdn.steamstatic.com/apps/artifact/images/comics/comic_prelude/es/{page}.jpg?v=4961724"
       page_min: 0
       page_max: 66
       page_padding: 3
@@ -291,9 +291,9 @@ comics:
     official_url: ""
     tags: ["Español"]
     release_date: "2025-11-10"
-    cover_url: "http://cdn.dota2.com//apps/dota2/images/comics/comic_goodkind_mh/latam/000.webp?v=1"
+    cover_url: "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_goodkind_mh/latam/000.webp?v=1"
     images:
-      url_template: "http://cdn.dota2.com//apps/dota2/images/comics/comic_goodkind_mh/latam/{page}.webp?v=1"
+      url_template: "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_goodkind_mh/latam/{page}.webp?v=1"
       page_min: 0
       page_max: 41
       page_padding: 3
@@ -314,12 +314,12 @@ comics:
   - id: smoke_harbor
     title: "Smoke Harbor"
     description: "En un pequeño puerto, Shen y Dragonus se separan para seguir sus pistas sobre los Kazurai."
-    cover_url: "http://cdn.dota2.com//apps/dota2/images/crownfall/act1_smoke_harbor/latam/004.webp"
+    cover_url: "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act1_smoke_harbor/latam/004.webp"
     official_url: ""
     tags: ["Español", "crownfall"]
     release_date: "2024-04-18"
     images:
-      url_template: "http://cdn.dota2.com//apps/dota2/images/crownfall/act1_smoke_harbor/latam/{page}.webp"
+      url_template: "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act1_smoke_harbor/latam/{page}.webp"
       page_min: 0
       page_max: 26
       page_padding: 3
@@ -340,12 +340,12 @@ comics:
   - id: the_nomad_star
     title: "La Estrella Nómada"
     description: "Mientras los compañeros de Dragonus duermen, la Estrella Nómada cae en la ladera de una montaña cercana, revelando su interior. Dentro, Arc Warden y Dragonus descubren a The Fourth Ancient."
-    cover_url: "http://cdn.dota2.com//apps/dota2/images/crownfall/act2_facets/latam/017.webp?v=1"
+    cover_url: "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_facets/latam/017.webp?v=1"
     official_url: ""
     tags: ["Español", "crownfall"]
     release_date: "2024-05-23"
     images:
-      url_template: "http://cdn.dota2.com//apps/dota2/images/crownfall/act2_facets/latam/{page}.webp?v=1"
+      url_template: "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_facets/latam/{page}.webp?v=1"
       page_min: 0
       page_max: 45
       page_padding: 3
@@ -384,7 +384,7 @@ comics:
     tags: ["Español", "crownfall"]
     release_date: "2024-07-09"
     images:
-      url_template: "http://cdn.dota2.com//apps/dota2/images/crownfall/act3_outro/latam/{page}.webp?v=1"
+      url_template: "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act3_outro/latam/{page}.webp?v=1"
       page_min: 0
       page_max: 27
       page_padding: 3
